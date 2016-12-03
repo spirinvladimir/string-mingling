@@ -4,9 +4,11 @@
       (loop [p s1
              q s2
              r ""]
-        (if (> (count (rest p)) 0)
-          (recur
-            (rest p)
-            (rest q)
-            (str r (first p) (first q)))
-          (str r (first p) (first q))))))
+        (let [a (first p)
+              b (first q)]
+            (if (nil? a)
+                r
+                (recur
+                    (rest p)
+                    (rest q)
+                    (str r a b)))))))
